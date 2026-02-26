@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('city_id')->nullable()
-            ->constrained();
+        Schema::table('role_user', function (Blueprint $table) {
+            $table->boolean('enabled')->default(0);
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            Schema::dropColumns('city_id');
+        Schema::table('role_user', function (Blueprint $table) {
+            Schema::dropColumns('enabled');
         });
     }
 };

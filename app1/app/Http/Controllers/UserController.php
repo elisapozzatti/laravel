@@ -63,6 +63,7 @@ class UserController extends Controller
         $user-> name = $request->input('name');
         $user -> email = $request->input('email', 'example@gmail.com');
         $user -> city_id = $request->input('city_id', null);
+        $user -> roles()->sync($request->input('role_id'));
 
         $user->save();
         return redirect('/users');
