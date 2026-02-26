@@ -15,13 +15,23 @@
         @endforeach
     </select>
     <br>
-    <label for="role_id">Ruolo</label>
+    <label for="role_id">Ruoli</label>
+    <br>
+    {{-- 
     <select name="role_id[]" multiple>
         <option value="">Seleziona il ruolo</option>
         @foreach(\App\Models\Role::get() as $role)
             <option value="{{$role->id}}">{{$role->name}}</option>
         @endforeach
     </select>
+    --}}
+    @foreach(\App\Models\Role::get() as $role)
+        <input type="checkbox" name="role_id[]" value="{{$role->id}}" {{in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'Checked' : ''}} />
+        <label>{{$role->name}}</label>
+        <input type="checkbox" value="{{$role->id}}" name="role_enabled[]" />
+        <label>attivo</label>
+        <br>
+    @endforeach
     <br>
     <button>Invia</button>
 </form>
